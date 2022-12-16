@@ -1,0 +1,48 @@
+# Route name can be used in several place (links, redirects, local actions etc.)
+entity.content_entity_student.canonical:
+  path: '/content_entity_student/{content_entity_student}'
+  defaults:
+    _entity_view: 'content_entity_student'
+    _title: 'Student Content'
+  requirements:
+    _entity_access: 'content_entity_student.view'
+
+entity.content_entity_student.collection:
+  path: '/content_entity_student/list'
+  defaults:
+    _entity_list: 'content_entity_student'
+    _title: 'Student List'
+  requirements:
+    _permission: 'view Student entity'
+
+entity.student.add_form:
+  path: '/content_entity_student/add'
+  defaults:
+    _entity_form: content_entity_student.add
+    _title: 'Add Student'
+  requirements:
+    _entity_create_access: 'content_entity_student'
+
+entity.content_entity_student.edit_form:
+  path: '/content_entity_student/{content_entity_student}/edit'
+  defaults:
+    _entity_form: content_entity_student.edit
+    _title: 'Edit Student'
+  requirements:
+    _entity_access: 'content_entity_student.edit'
+
+entity.content_entity_student.delete_form:
+  path: '/student/{content_entity_student}/delete'
+  defaults:
+    _entity_form: content_entity_student.delete
+    _title: 'Delete Student'
+  requirements:
+    _entity_access: 'content_entity_student.delete'
+
+student.student_settings:
+  path: 'admin/structure/content_entity_student_settings'
+  defaults:
+    _form: '\Drupal\student\Form\StudentSettingsForm'
+    _title: 'Student Settings'
+  requirements:
+    _permission: 'administer contact entity'

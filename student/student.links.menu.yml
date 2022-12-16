@@ -1,0 +1,12 @@
+# Define the menu links for this module
+
+entity.content_entity_student.collection:
+  title: 'Student Entity: Student Listing'
+  route_name: entity.content_entity_student.collection
+  description: 'List Student'
+  weight: 10
+content_entity_student.admin.structure.settings:
+  title: 'Student Settings'
+  description: 'Configure Student entity'
+  route_name:  student.student_settings
+  parent: system.admin_structure

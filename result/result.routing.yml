@@ -1,0 +1,48 @@
+# Route name can be used in several place (links, redirects, local actions etc.)
+entity.content_entity_result.canonical:
+  path: '/content_entity_result/{content_entity_result}'
+  defaults:
+    _entity_view: 'content_entity_result'
+    _title: 'result Content'
+  requirements:
+    _entity_access: 'content_entity_result.view'
+
+entity.content_entity_result.collection:
+  path: '/content_entity_result/list'
+  defaults:
+    _entity_list: 'content_entity_result'
+    _title: 'result List'
+  requirements:
+    _permission: 'view result entity'
+
+entity.result.add_form:
+  path: '/content_entity_result/add'
+  defaults:
+    _entity_form: content_entity_result.add
+    _title: 'Add result'
+  requirements:
+    _entity_create_access: 'content_entity_result'
+
+entity.content_entity_result.edit_form:
+  path: '/content_entity_result/{content_entity_result}/edit'
+  defaults:
+    _entity_form: content_entity_result.edit
+    _title: 'Edit result'
+  requirements:
+    _entity_access: 'content_entity_result.edit'
+
+entity.content_entity_result.delete_form:
+  path: '/result/{content_entity_result}/delete'
+  defaults:
+    _entity_form: content_entity_result.delete
+    _title: 'Delete result'
+  requirements:
+    _entity_access: 'content_entity_result.delete'
+
+result.result_settings:
+  path: 'admin/structure/content_entity_result_settings'
+  defaults:
+    _form: '\Drupal\result\Form\resultSettingsForm'
+    _title: 'result Settings'
+  requirements:
+    _permission: 'administer contact entity'

@@ -1,0 +1,12 @@
+# Define the menu links for this module
+
+entity.content_entity_result.collection:
+  title: 'Result Entity: Result Listing'
+  route_name: entity.content_entity_result.collection
+  description: 'List Result'
+  weight: 10
+content_entity_result.admin.structure.settings:
+  title: 'Result Settings'
+  description: 'Configure result entity'
+  route_name:  result.result_settings
+  parent: system.admin_structure

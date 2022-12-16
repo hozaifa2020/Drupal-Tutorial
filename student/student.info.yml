@@ -1,0 +1,5 @@
+name: Manage Student
+type: module
+description: 'Manage Student entity.'
+core_version_requirement: ^8.8 || ^9
+package: Custom
