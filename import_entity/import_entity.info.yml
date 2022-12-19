@@ -1,0 +1,5 @@
+name: import entity
+type: module
+description: Import entity from csv
+core_version_requirement: 8.x || 9.x
+package: Custom

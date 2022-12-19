@@ -1,0 +1,7 @@
+import_entity.upload_data:  
+  path: '/upload-data'  
+  defaults:  
+    _form: '\Drupal\import_entity\Form\UploadData'  
+    _title: 'Upload Entity Data'  
+  requirements:  
+    _permission: 'none'
