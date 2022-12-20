@@ -102,18 +102,16 @@ class UploadData extends FormBase
 		}
 		
 		
-		foreach($rows as $row){
+		foreach(array_slice($rows,1) as $row){
 			$values = \Drupal::entityQuery('content_entity_result')->condition('name', $row[0])->execute();
 			$node_not_exists = 1;
 			if($node_not_exists){
 				
-				$database = \Drupal::database();
-                  $query = $database->insert('result')->fields(['uuid', 'langcode', 'name', 'subject', 'score']);
-  foreach (array_slice($rows,1)  as $developer) {
-	  
-    $query->values($developer);
-  }
-  $query->execute();
+			   $entity = entity_create('content_entity_result');
+			   $entity->name = $row[0];
+			   $entity->subject = $row[1];
+			   $entity->score = $row[2];
+               $entity->save();
 			}else{
 				/*if node exist update the node*/
 				$nid = reset($values);
