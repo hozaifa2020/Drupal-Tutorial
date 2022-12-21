@@ -41,7 +41,6 @@ class ResultListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('Roll Number');
-    $header['name'] = $this->t('Name');
     $header['subject'] = $this->t('Subject');
     $header['score'] = $this->t('Score');
     return $header + parent::buildHeader();
@@ -52,7 +51,6 @@ class ResultListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     $row['id'] = $entity->id();
-    $row['name'] = $entity->name->value;
     $row['subject'] = $entity->subject->value;
 	$row['score'] = $entity->score->value;
     return $row + parent::buildRow($entity);

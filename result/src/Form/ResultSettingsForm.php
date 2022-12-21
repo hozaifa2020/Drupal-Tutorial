@@ -1,7 +1,6 @@
 <?php
 
 namespace Drupal\result\Form;
-
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 class ResultSettingsForm extends FormBase {

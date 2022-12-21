@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\result\resultInterface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Database\Database;
 
 /**
  * Defines the Contact entity.
@@ -92,7 +93,7 @@ use Drupal\user\UserInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "uuid" = "uuid",
- *     "name" = "name",
+ *     "roll_number" = "roll_number",
  *     "subject" = "subject",
  *     "score" = "score",
  *     "langcode" = "langcode",
@@ -226,8 +227,8 @@ class Result extends ContentEntityBase implements resultInterface {
 
     // Standard field, used as unique if primary index.
     $fields['id'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Roll Number'))
-      ->setDescription(t('The Roll Number of the result entity.'))
+      ->setLabel(t('ID'))
+      ->setDescription(t('ID'))
       ->setReadOnly(TRUE);
 
    
@@ -236,37 +237,48 @@ class Result extends ContentEntityBase implements resultInterface {
       ->setDescription(t('The UUID of the result entity.'))
       ->setReadOnly(TRUE);
 	  
-   
+		$query = \Drupal::database()->select('student', 't');
+        $query->fields('t', ['id']);
+        $result = $query->execute()->fetchAll();
 
+        $roll_number = array();
+        foreach ($result as $roll) {
+	       $roll_number[$roll->id] = $roll->id;
+         }
 
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the result.'))
-      ->setSettings(array(
-        'default_value' => '',
-        'max_length' => 255,
-        'text_processing' => 0,
-      ))
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
-        'weight' => -6,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'string',
-        'weight' => -6,
-      ))
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
+        $fields['roll_number'] = BaseFieldDefinition::create('list_string')
+            ->setLabel(t('Roll No'))
+            ->setDescription(t('The Roll No of the student.'))
+            ->setSettings(array(
+                'allowed_values' => $roll_number,
+                'required' => TRUE,
+                'max_length' => 255,
+                'text_processing' => 0,
+            ))
+			
+            ->setDisplayOptions('view', array(
+                'label' => 'above',
+                'type' => 'string',
+                'weight' => -6,
+            ))
+			->setRequired(TRUE)
+            ->setDisplayOptions('form', array(
+                'type' => 'string_textfield',
+                'weight' => -6,
+            ))
+            ->setDisplayConfigurable('form', TRUE)
+            ->setDisplayConfigurable('view', TRUE);
 
     $fields['subject'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Subject'))
-      ->setDescription(t('The Subject of the result.'))
+      ->setDescription(t('The Subject of the student.'))
       ->setSettings(array(
         'default_value' => '',
+		'required' => TRUE,
         'max_length' => 255,
         'text_processing' => 0,
       ))
+	  ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
         'type' => 'string',
@@ -281,13 +293,15 @@ class Result extends ContentEntityBase implements resultInterface {
 	  
 	  
 	 $fields['score'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Score Number'))
-      ->setDescription(t('The score number of the result.'))
+      ->setLabel(t('Score'))
+      ->setDescription(t('The score of the student.'))
       ->setSettings(array(
         'default_value' => '',
+	    'required' => TRUE,
         'max_length' => 255,
         'text_processing' => 0,
       ))
+	  ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
         'type' => 'string',

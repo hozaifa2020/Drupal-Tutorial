@@ -247,6 +247,7 @@ class Student extends ContentEntityBase implements studentInterface {
         'max_length' => 255,
         'text_processing' => 0,
       ))
+	  ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
         'type' => 'string',
@@ -267,6 +268,7 @@ class Student extends ContentEntityBase implements studentInterface {
         'max_length' => 255,
         'text_processing' => 0,
       ))
+	  ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
         'type' => 'string',
@@ -288,6 +290,7 @@ class Student extends ContentEntityBase implements studentInterface {
         'max_length' => 255,
         'text_processing' => 0,
       ))
+	  ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
         'type' => 'string',
