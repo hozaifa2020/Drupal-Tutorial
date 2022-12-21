@@ -27,7 +27,7 @@ entity.content_entity_result.edit_form:
   path: '/content_entity_result/{content_entity_result}/edit'
   defaults:
     _entity_form: content_entity_result.edit
-    _title: 'Edit result'
+    _title: 'Edit Result'
   requirements:
     _entity_access: 'content_entity_result.edit'
 

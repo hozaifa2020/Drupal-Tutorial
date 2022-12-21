@@ -40,7 +40,7 @@ class ResultListBuilder extends EntityListBuilder {
    * and inserts the 'edit' and 'delete' links as defined for the entity type.
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Roll Number');
+    $header['roll_number'] = $this->t('Roll Number');
     $header['subject'] = $this->t('Subject');
     $header['score'] = $this->t('Score');
     return $header + parent::buildHeader();
@@ -50,7 +50,7 @@ class ResultListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row['id'] = $entity->id();
+    $row['roll_number'] = $entity->roll_number->value;
     $row['subject'] = $entity->subject->value;
 	$row['score'] = $entity->score->value;
     return $row + parent::buildRow($entity);
