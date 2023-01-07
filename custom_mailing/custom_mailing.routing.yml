@@ -1,0 +1,15 @@
+custom_mailing.route_admin_settings:
+  path: '/admin/config/mailing'
+  defaults:
+    _title: 'Custom mailing'
+    _form: '\Drupal\custom_mailing\Form\AdminSettingsForm'
+  requirements:
+    _permission: 'administer custom_mailing settings'
+
+custom_mailing.content:
+  path: '/example' 
+  defaults: 
+    _controller: '\Drupal\custom_mailing\Controller\MailingController::content' 
+    _title: 'Hello World'
+  requirements: 
+    _access: 'TRUE'    

@@ -1,0 +1,35 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+function custom_mailing_form_alter(&$form, FormStateInterface $form_state) {
+
+  if ($form['#form_id'] == 'custom_mailing_admin_settings_form') {
+    
+    $config = Drupal::config('custom_mailing.settings');
+    $form['custom_subject'] = [
+      '#type' => 'textfield',
+      '#title' => t('Subject'),
+      '#default_value' => $config->get('custom_subject'),
+      '#description' => t('Enter subject contact form.')
+    ];
+
+    $form['actions']['submit']['#validate'][] = 'custom_mailing_form_validate';
+    $form['actions']['submit']['#submit'][] = 'custom_mailing_form_submit';
+    return $form;
+  }
+  
+}
+
+function custom_mailing_form_validate($form, FormStateInterface $form_state) {
+
+  if ($form_state->getValue('custom_subject') == '') {
+    $form_state->setErrorByName('custom_subject', t('Enter mail subject'));
+  }
+}
+
+function custom_mailing_form_submit($form, FormStateInterface $form_state) {
+  \Drupal::getContainer()->get('config.factory')->getEditable('custom_mailing.settings')
+    ->set('custom_subject', $form_state->getValue('custom_subject'))
+    ->save();
+}
