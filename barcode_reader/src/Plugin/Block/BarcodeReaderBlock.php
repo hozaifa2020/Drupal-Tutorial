@@ -18,6 +18,7 @@ class BarcodeReaderBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
+	  
     $build = [];
     $build['#theme'] = 'barcode_reader_block';
     $node = \Drupal::routeMatch()->getParameter('node');
@@ -31,6 +32,11 @@ class BarcodeReaderBlock extends BlockBase {
 						<img src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$product_url&choe=UTF-8'>";
 
     return $build;
+	
   }
+  
+   public function getCacheMaxAge() {
+    return 0;
+   }
 
 }
