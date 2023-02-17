@@ -1,0 +1,5 @@
+name: 'barcode_reader'
+type: module
+description: 'Scan barcode to buy the product.'
+core_version_requirement: 9.x
+package: 'Custom'
