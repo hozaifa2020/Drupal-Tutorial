@@ -22,3 +22,10 @@ function barcode_reader_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+function barcode_reader_preprocess_page(&$variables) {
+	
+  if ($variables['is_front']) {
+    unset($variables['page']['sidebar_first']['barcodereaderblock']);
+  }
+}
